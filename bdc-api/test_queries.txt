@@ -1,0 +1,3 @@
+curl localhost:3000/api/dashboard/1
+
+curl -X POST -d "{\"userID\": 1, \"worldID\": 3, \"xCoord\": 15, \"yCoord\": 30, \"name\": \"thunderbear\"}" -H "Content-Type: application/json" localhost:3000/api/player
