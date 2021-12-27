@@ -3,12 +3,12 @@ package router
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"go_server_test/handlers"
+	"go_server_test/controllers"
 )
 
 func SetupRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
-	api.Get("/dashboard/:user_id", handlers.GetDashboardData)
-	api.Post("/player", handlers.CreatePlayerAndJoinWorld)
+	api.Get("/dashboard/:user_id", controllers.GetDashboardData)
+	api.Post("/player", controllers.CreatePlayerAndJoinWorld)
 }
