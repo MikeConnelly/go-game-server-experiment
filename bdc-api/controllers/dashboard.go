@@ -3,7 +3,6 @@ package controllers
 import (
 	"fmt"
 	"log"
-	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 
@@ -27,10 +26,15 @@ type DashboardData struct {
 }
 
 func GetDashboardData(c *fiber.Ctx) error {
-	// user should be retrieve from some middleware jwt
-	userID, err := strconv.ParseUint(c.Params("userId"), 10, 64)
+	sess, err := store.Get(c)
 	if err != nil {
-		log.Fatal("Error converting params from string\n", err)
+		log.Fatal(err)
+	}
+
+	log.Println(sess)
+	userID := sess.Get("userId")
+	if userID == nil {
+		return c.SendStatus(401)
 	}
 
 	var data []DashboardData
